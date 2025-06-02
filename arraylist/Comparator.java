@@ -1,41 +1,43 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
-
-class Student implements Comparable <Student>{
+class Student{
     int age;
+    int rollnumber;
     String name;
 
-    public Student(int age, String name){
+    public Student(int age, String name, int rollnumber){
         this.age = age;
         this.name = name ;
+        this.rollnumber = rollnumber;
     }
 
     public String toString(){
-        return age + " " +name;
-    }
-
-    public int compareTo(Student s){
-        return this.age-s.age;
+        return age + " " +name+ " "+ rollnumber;
     }
 }
 
-class Comparator{
+class SortByName  implements Comparator <Student>{
 
+
+        
+    public int compare(Student s1, Student s2){
+        return s1.name.compareTo(s2.name);
+    }
+}
+
+class comparator{
     public static void main(String[] args){
         ArrayList<Student> list = new ArrayList<>();
-        list.add(new Student(12, "rahul"));
-        list.add(new Student(11, "raju"));
-     
-            // ArrayList<Integer> list = new ArrayList<>();
-            // list.add(1);
-            // list.add(0);
-            // list.add(4);
-            Collections.sort(list);
+        list.add(new Student(12, "rahul", 23));
+        list.add(new Student(11, "raju", 45));
+        list.add(new Student(156, "mohan", 456));
+        list.add(new Student(121, "jain", 23));
+      
+            Collections.sort(list, new SortByName());
             for(Student s: list){
-                System.out.println(s.toString());
-            }
-            System.out.println(list);
-     
+                System.out.println(s);
+            }     
      }
 }
